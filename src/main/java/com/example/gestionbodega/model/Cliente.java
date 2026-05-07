@@ -1,10 +1,13 @@
 package com.example.gestionbodega.model;
 
+import com.example.gestionbodega.model.Pedido;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -21,7 +24,7 @@ public class Cliente {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Integer id_cliente;
 
 
     @NotBlank(message = "El nombre es obligatorio")
@@ -48,5 +51,11 @@ public class Cliente {
     @Size(min = 9, max = 9, message = "El teléfono debe tener exactamente 9 caracteres")
     @Column(name = "telefono", nullable = false, length = 9)
     private int telefono;
+
+    @OneToMany
+    @JoinColumn(name = "id_pedido")
+    private Pedido pedido;
+
+
 
 }
