@@ -25,12 +25,12 @@ public class Cliente {
 
 
     @NotBlank(message = "El nombre es obligatorio")
-    @Size(max = 50, message = "El nombre no puede tener más de 50 caracteres")
+    @Size(min = 3, max = 50, message = "El nombre no puede tener más de 50 caracteres")
     @Column(name = "nombre", nullable = false, length = 100)
     private String nombre;
 
     @NotBlank(message = "El apellido es obligatorio")
-    @Size(max = 50, message = "El apellido no puede tener más de 50 caracteres")
+    @Size(min = 4, max = 50, message = "El apellido no puede tener más de 50 caracteres")
     @Column(name = "apellido", nullable = false, length = 100)
     private String apellido;
 
@@ -38,7 +38,15 @@ public class Cliente {
     @Size(max = 12, message = "El RUT no puede tener más de 10 caracteres")
     @Column(name = "rut", nullable = false, unique = true, length = 10) 
     private String rut;
+
+    @NotBlank(message = "El correo es obligatorio")
+    @Size(max = 60, message = "El correo no puede tener más de 60 caracteres")
+    @Column(name = "correo", nullable = false, length = 60)
     private String correo;
-    private String telefono;
+
+    @NotBlank(message = "El teléfono es obligatorio")
+    @Size(min = 9, max = 9, message = "El teléfono debe tener exactamente 9 caracteres")
+    @Column(name = "telefono", nullable = false, length = 9)
+    private int telefono;
 
 }
