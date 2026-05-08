@@ -65,4 +65,5 @@ public class ClienteService {
     public List<Cliente> buscarPorRut(String rut) {
         return clienteRepository.findByRut(rut);
     }
+    
 }
