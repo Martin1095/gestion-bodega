@@ -1,6 +1,5 @@
 package com.example.gestionbodega.model;
 
-import com.example.gestionbodega.model.Pedido;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -28,18 +27,18 @@ public class Cliente {
 
 
     @NotBlank(message = "El nombre es obligatorio")
-    @Size(min = 3, max = 50, message = "El nombre no puede tener más de 50 caracteres")
-    @Column(name = "nombre", nullable = false, length = 100)
+    @Size(min = 3, max = 20, message = "El nombre no puede tener más de 20 caracteres")
+    @Column(name = "nombre", nullable = false, length = 20)
     private String nombre;
 
     @NotBlank(message = "El apellido es obligatorio")
-    @Size(min = 4, max = 50, message = "El apellido no puede tener más de 50 caracteres")
-    @Column(name = "apellido", nullable = false, length = 100)
+    @Size(min = 3, max = 20, message = "El apellido no puede tener más de 20 caracteres")
+    @Column(name = "apellido", nullable = false, length = 20)
     private String apellido;
 
     @NotBlank(message = "El RUT es obligatorio")
-    @Size(max = 12, message = "El RUT no puede tener más de 10 caracteres")
-    @Column(name = "rut", nullable = false, unique = true, length = 10) 
+    @Size(min = 10, max = 10, message = "El RUT debe tener 10 caracteres")
+    @Column(name = "rut", nullable = false, unique = true, length = 10)
     private String rut;
 
     @NotBlank(message = "El correo es obligatorio")
@@ -55,7 +54,5 @@ public class Cliente {
     @OneToMany
     @JoinColumn(name = "id_pedido")
     private Pedido pedido;
-
-
 
 }
