@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.gestionbodega.DTO.ClienteDTO;
 import com.example.gestionbodega.model.Cliente;
 import com.example.gestionbodega.repository.ClienteRepository;
 
@@ -65,5 +66,9 @@ public class ClienteService {
     public List<Cliente> buscarPorRut(String rut) {
         return clienteRepository.findByRut(rut);
     }
+
+
+
+
     
 }
