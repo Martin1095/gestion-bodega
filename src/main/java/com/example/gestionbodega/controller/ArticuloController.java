@@ -69,7 +69,7 @@ public class ArticuloController {
         String resultado = articuloService.eliminarArticulo(id);
         if (resultado.contains("correctamente")) {
             return new ResponseEntity<>(resultado, HttpStatus.OK);
-        } 
+        }
         
         return new ResponseEntity<>(resultado, HttpStatus.NOT_FOUND); 
     }
