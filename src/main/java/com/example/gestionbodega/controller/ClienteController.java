@@ -29,8 +29,8 @@ public class ClienteControler {
     }
 
     // Método para buscar un cliente por su RUT
-    @GetMapping("/buscar")
-    public ResponseEntity<List<ClienteDTO>> buscarPorRut(@RequestParam String rut) {
+    @GetMapping("/buscar/{rut}")
+    public ResponseEntity<List<ClienteDTO>> buscarPorRut(@PathVariable String rut) {
         List<ClienteDTO> clientes = clienteService.buscarPorRut(rut);
         if (clientes.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
