@@ -10,6 +10,6 @@ public class ClienteDTO {
     private String apellido;
     private String rut;
     private String correo;
-    private int numero;
+    private int telefono;
 
 }

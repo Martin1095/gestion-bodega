@@ -26,7 +26,7 @@ public class ClienteService {
     }
 
     // Metodo para obtener un cliente por su ID
-    public Cliente obtenerClientePorId(Integer id_cliente){
+    public ClienteDTO obtenerClientePorId(Integer id_cliente){
         Cliente cliente = clienteRepository.findById(id_cliente)
                     .orElseThrow(() -> new RuntimeException("Cliente no encontrado con ID: " + id_cliente));
         return convertirAClienteDTO(cliente);
