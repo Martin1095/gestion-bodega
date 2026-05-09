@@ -19,14 +19,17 @@ public class ClienteService {
     private ClienteRepository clienteRepository;
 
     // Método para obtener todos los clientes
-    public List<Cliente> obtenerClientes(){
-        return clienteRepository.findAll();
+    public List<ClienteDTO> obtenerClientes(){
+        return clienteRepository.findAll().stream()
+                .map(this::convertirAClienteDTO)
+                .toList();
     }
 
     // Metodo para obtener un cliente por su ID
     public Cliente obtenerClientePorId(Integer id_cliente){
-        return clienteRepository.findById(id_cliente)
+        Cliente cliente = clienteRepository.findById(id_cliente)
                     .orElseThrow(() -> new RuntimeException("Cliente no encontrado con ID: " + id_cliente));
+        return convertirAClienteDTO(cliente);
     }
 
     // Metodo para eliminar un cliente por su ID
@@ -63,8 +66,20 @@ public class ClienteService {
     }
 
     // Método para buscar clientes por RUT
-    public List<Cliente> buscarPorRut(String rut) {
-        return clienteRepository.findByRut(rut);
+    public List<ClienteDTO> buscarPorRut(String rut) {
+        return clienteRepository.findByRut(rut).stream()
+                .map(this::convertirAClienteDTO)
+                .toList();
+    }
+    
+    // Método para transformar un Cliente a ClienteDTO
+    public ClienteDTO convertirAClienteDTO(Cliente cliente) {
+        ClienteDTO clienteDTO = new ClienteDTO();
+        clienteDTO.setId_cliente(cliente.getId_cliente());
+        clienteDTO.setNombre(cliente.getNombre());
+        clienteDTO.setCorreo(cliente.getCorreo());
+        clienteDTO.setTelefono(cliente.getTelefono());
+        return clienteDTO;
     }
 
 
