@@ -26,7 +26,7 @@ public class ClienteService {
     }
 
     // Metodo para obtener un cliente por su ID
-    public Cliente obtenerClientePorId(Integer id_cliente){
+    public ClienteDTO obtenerClientePorId(Integer id_cliente){
         Cliente cliente = clienteRepository.findById(id_cliente)
                     .orElseThrow(() -> new RuntimeException("Cliente no encontrado con ID: " + id_cliente));
         return convertirAClienteDTO(cliente);
@@ -50,17 +50,17 @@ public class ClienteService {
     }
 
     // Método para actualizar un cliente existente
-    public Cliente actualizarCliente(Integer id_cliente, Cliente clienteActualizado) {
+    public Cliente actualizarCliente(Integer id_cliente, Cliente clienteActu) {
         Cliente cliente = clienteRepository.findById(id_cliente).orElseThrow(() -> new RuntimeException("¡Imposible editar! El cliente con ID " + id_cliente + " no existe."));
         
         if(cliente.getNombre() != null) {
-            cliente.setNombre(clienteActualizado.getNombre());
+            cliente.setNombre(clienteActu.getNombre());
         }
         if(cliente.getCorreo() != null) {
-            cliente.setCorreo(clienteActualizado.getCorreo());
+            cliente.setCorreo(clienteActu.getCorreo());
         }
         if(cliente.getTelefono() != 0) {
-            cliente.setTelefono(clienteActualizado.getTelefono());
+            cliente.setTelefono(clienteActu.getTelefono());
         }
         return clienteRepository.save(cliente);
     }
@@ -82,8 +82,4 @@ public class ClienteService {
         return clienteDTO;
     }
 
-
-
-
-    
 }
