@@ -86,7 +86,7 @@ public class ClienteController {
         if (mensaje.contains("Exitosamente")) {
             return new ResponseEntity<>(mensaje, HttpStatus.OK);
         } else {
-            return new ResponseEntity<>(mensaje, HttpStatus.OK);
+            return new ResponseEntity<>(mensaje, HttpStatus.NOT_FOUND);
         }
         
     }
