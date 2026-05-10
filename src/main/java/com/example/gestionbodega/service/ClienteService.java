@@ -33,7 +33,7 @@ public class ClienteService {
     }
 
     // Metodo para eliminar un cliente por su ID
-    public String eliminar(Integer id) {
+    public String eliminarCliente(Integer id) {
         try {
             Cliente cliente = clienteRepository.findById(id)
                     .orElseThrow(() -> new RuntimeException("¡Imposible eliminar! El cliente con ID " + id + " no existe."));
