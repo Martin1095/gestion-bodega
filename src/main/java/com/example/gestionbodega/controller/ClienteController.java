@@ -81,7 +81,7 @@ public class ClienteController {
     // metodo para eliminar un cliente por su ID
     @DeleteMapping("/eliminar/{id}")
     public ResponseEntity<String> eliminarCliente(@PathVariable Integer id) {
-        String mensaje = clienteService.eliminar(id);
+        String mensaje = clienteService.eliminarCliente(id);
 
         if (mensaje.contains("Exitosamente")) {
             return new ResponseEntity<>(mensaje, HttpStatus.OK);

@@ -10,5 +10,6 @@ import com.example.gestionbodega.model.Pedido;
 @Repository
 public interface PedidoRepository extends JpaRepository<Pedido, Integer> {
 
+    // Buscar pedidos por ID de pedido
     List<Pedido> findById_pedido(Integer id_pedido);
 }

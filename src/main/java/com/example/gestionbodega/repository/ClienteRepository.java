@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ClienteRepository extends JpaRepository<Cliente, Integer> {
 
+    // Buscar clientes por RUT
     List<Cliente> findByRut(String rut);
     
 }
