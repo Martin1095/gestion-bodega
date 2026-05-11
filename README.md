@@ -21,7 +21,7 @@ El objetivo principal es mejorar la organización y trazabilidad de los procesos
 
 ## Tecnologías utilizadas
 
-- Java 17
+- Java 21
 - Spring Boot
 - Maven
 - Spring Web
