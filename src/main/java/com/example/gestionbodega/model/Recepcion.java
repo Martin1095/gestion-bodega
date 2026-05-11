@@ -6,9 +6,10 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -30,14 +31,28 @@ public class Recepcion {
     @Column(nullable = false)
     private LocalDate fecha;
 
-    // Nombre del proveedor
-    @NotBlank
-    @Column(nullable = false)
-    private String proveedor;
 
     // Cantidad recibida
     @Min(value = 1)
     @Column(nullable = false)
     private Integer cantidad;
+
+    // Relacion con proveedor
+    // Muchas recepciones pueden pertenecer a un proveedor
+    @ManyToOne
+    @JoinColumn(name = "proveedor_id")
+    private Proveedor proveedor;
+
+    // Relacion con articulo
+    // Muchas recepciones pueden pertenecer a un articulo
+    @ManyToOne
+    @JoinColumn(name = "articulo_id")
+    private Articulo articulo;
+
+    // Relacion con trabajador
+    // El trabajador registra la recepcion
+    @ManyToOne
+    @JoinColumn(name = "trabajador_id")
+    private Trabajador trabajador;
 
 }

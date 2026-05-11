@@ -1,10 +1,15 @@
 package com.example.gestionbodega.model;
 
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
@@ -21,8 +26,6 @@ import lombok.NoArgsConstructor;
 @Builder
 @Entity
 @Table(name = "articulos")
-
-
 public class Articulo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -48,4 +51,15 @@ public class Articulo {
     @Min(value = 1)
     @Column(nullable = false)
     private Double precio;
+
+    // Relacion articulo -> inventarios
+    @JsonIgnore
+    @OneToMany(mappedBy = "articulo")
+    private List<Inventario> inventarios;
+
+    // Relacion articulo -> recepciones
+    @JsonIgnore
+    @OneToMany(mappedBy = "articulo")
+    private List<Recepcion> recepciones;
+
 }

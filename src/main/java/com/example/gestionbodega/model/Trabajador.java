@@ -1,10 +1,15 @@
 package com.example.gestionbodega.model;
 
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
@@ -13,6 +18,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
 
 @Data
 @NoArgsConstructor
@@ -42,5 +48,15 @@ public class Trabajador {
     @Min(value = 18)
     @Column(nullable = false)
     private Integer edad;
+
+    // Relacion trabajador -> despachos
+    @JsonIgnore
+    @OneToMany(mappedBy = "trabajador")
+    private List<Despacho> despachos;
+
+    // Relacion trabajador -> recepciones
+    @JsonIgnore
+    @OneToMany(mappedBy = "trabajador")
+    private List<Recepcion> recepciones;
 
 }
