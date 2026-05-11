@@ -1,10 +1,14 @@
 package com.example.gestionbodega.model;
 
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Min;
 import lombok.Data;
@@ -22,9 +26,13 @@ public class DetallePedido {
     @Column(name = "cantidad", nullable = false)
     private int cantidad;
 
-    // Precio unitario
+
     @Min(value = 1)
     @Column(name = "precio_unitario", nullable = false)
     private double precio_unitario;
+
+    @ManyToMany
+    @JoinColumn(name = "pedido")
+    private List<Pedido> pedidos;
 
 }

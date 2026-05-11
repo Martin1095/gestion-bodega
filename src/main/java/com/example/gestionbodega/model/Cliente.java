@@ -2,13 +2,12 @@ package com.example.gestionbodega.model;
 
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
@@ -54,9 +53,8 @@ public class Cliente {
     @Column(name = "telefono", nullable = false, length = 9)
     private int telefono;
 
-
-    @JsonIgnore
-    @OneToMany(mappedBy = "cliente")
+    @OneToMany
+    @JoinColumn(name = "cliente")
     private List<Pedido> pedidos;
 
 }

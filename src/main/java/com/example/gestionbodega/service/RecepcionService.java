@@ -29,7 +29,7 @@ public class RecepcionService {
         RecepcionDTO dto = new RecepcionDTO();
         dto.setId(recepcion.getId());
         dto.setFecha(recepcion.getFecha());
-        dto.setProveedor(recepcion.getProveedor());
+        dto.setProveedorId(recepcion.getProveedor().getId());
         dto.setCantidad(recepcion.getCantidad());
         return dto;
     }

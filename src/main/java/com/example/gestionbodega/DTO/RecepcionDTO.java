@@ -19,8 +19,7 @@ public class RecepcionDTO {
     private String nombreArticulo;
 
     // Datos trabajador
-    private Integer trabajadorId; 
-
+    private Integer trabajadorId;
     private String nombreTrabajador;
 
 }
