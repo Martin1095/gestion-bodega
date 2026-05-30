@@ -6,7 +6,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -40,7 +40,7 @@ public class Pedido {
     @Column(name = "estado_pedido", nullable = false, length = 20)
     private String estado_pedido;
 
-    @OneToMany
+    @ManyToOne
     @JoinColumn(name = "id_cliente")
     private Cliente cliente;
 
