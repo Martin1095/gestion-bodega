@@ -1,11 +1,8 @@
 package com.example.gestionbodega.DTO;
 
-import lombok.*;
+import lombok.Data;
 
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
 
 public class BodegaDTO {
 

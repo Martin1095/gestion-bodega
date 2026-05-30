@@ -59,7 +59,7 @@ public class ClienteService {
         if(cliente.getCorreo() != null) {
             cliente.setCorreo(clienteActu.getCorreo());
         }
-        if(cliente.getTelefono() != 0) {
+        if(cliente.getTelefono() != null) {
             cliente.setTelefono(clienteActu.getTelefono());
         }
         return clienteRepository.save(cliente);

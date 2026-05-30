@@ -6,7 +6,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -35,14 +35,12 @@ public class Pedido {
     @Column(name = "direccion_entrega", nullable = false, length = 100)
     private String direccion_entrega;
 
-
-
     @NotBlank(message = "El estado del pedido es obligatorio")
     @Size(max = 20, message = "El estado del pedido no puede tener más de 20 caracteres")
     @Column(name = "estado_pedido", nullable = false, length = 20)
     private String estado_pedido;
 
-    @ManyToOne
+    @OneToMany
     @JoinColumn(name = "id_cliente")
     private Cliente cliente;
 

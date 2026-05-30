@@ -3,7 +3,7 @@ package com.example.gestionbodega.DTO;
 import lombok.Data;
 
 @Data
-public class ArticuloDTO { 
+public class ArticuloDTO {
     private Integer id;
     private String nombre;
     private String marca;

@@ -51,7 +51,7 @@ public class Cliente {
     @NotBlank(message = "El teléfono es obligatorio")
     @Size(min = 9, max = 9, message = "El teléfono debe tener exactamente 9 caracteres")
     @Column(name = "telefono", nullable = false, length = 9)
-    private int telefono;
+    private String telefono;
 
     @OneToMany
     @JoinColumn(name = "cliente")

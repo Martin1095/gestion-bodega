@@ -9,6 +9,6 @@ import com.example.gestionbodega.model.Articulo;
 public interface ArticuloRepository extends JpaRepository<Articulo, Integer>{
 
 // Buscar artículos por marca
-List<Articulo> findByMarca(String marca);
+    List<Articulo> findByMarca(String marca);
 
 }
