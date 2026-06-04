@@ -32,6 +32,13 @@ public class ClienteService {
         return convertirAClienteDTO(cliente);
     }
 
+    // Metodo para obtener clientes por su RUT
+    public List<ClienteDTO> obtenerClientePorRut(String rut){
+        return clienteRepository.findByRut(rut).stream()
+                .map(this::convertirAClienteDTO)
+                .toList();
+    }
+
     // Metodo para eliminar un cliente por su ID
     public String eliminarCliente(Integer id) {
         try {
