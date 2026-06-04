@@ -3,18 +3,24 @@ package com.example.gestionbodega.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.CollectionModel;
+import org.springframework.hateoas.EntityModel;
+import org.springframework.hateoas.MediaTypes;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.gestionbodega.DTO.ClienteDTO;
 import com.example.gestionbodega.assemblers.ClienteModelAssembler;
 import com.example.gestionbodega.model.Cliente;
 import com.example.gestionbodega.service.ClienteService;
+
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
@@ -22,14 +28,17 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 
 import java.util.stream.Collectors;
 
+
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
 
+@Controller
+@RequestMapping("/api/v2/clientes")
 public class ClienteControllerV2 {
     @Autowired
     private ClienteService clienteService;
 
     @Autowired
-    private ClienteModelAssembler clienteModelAssembler;
+    private ClienteModelAssembler assembler;
 
     // Método para obtener todos los clientes
     @GetMapping
@@ -42,15 +51,14 @@ public class ClienteControllerV2 {
     }
 
     // Metodo para obtener un cliente por su ID
-    @GetMapping("/{id_cliente}")
-    public ResponseEntity<ClienteDTO> obtenerClientePorId(@PathVariable Integer id_cliente) {
-        try {
-            ClienteDTO cliente = clienteService.obtenerClientePorId(id_cliente);
-            return new ResponseEntity<>(cliente, HttpStatus.OK);
-        } catch (RuntimeException e) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+    @GetMapping(value = "/{id_cliente}", produces = MediaTypes.HAL_JSON_VALUE)
+    public EntityModel<ClienteDTO> obtenerClientePorId(@PathVariable Integer id_cliente) {
+        
+        ClienteDTO cliente = clienteService.obtenerClientePorId(id_cliente);
+
+        return assembler.toModel(cliente);
     }
+        
 
     // Método para buscar un cliente por su RUT
     @GetMapping("/buscar/{rut}")
