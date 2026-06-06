@@ -31,7 +31,7 @@ public class PedidoController {
 
     // Metodo para obtener todos los pedidos
     @GetMapping
-    @Operation(summary = "Obtener todos los pedidos", description = "Devuelve una lista de todos los pedidos registrados en el sistema")
+    @Operation(summary = "Obtener todos los pedidos", description = "Devuelve una lista de todos los pedidos en el sistema")
     @ApiResponse(responseCode = "200", description = "Lista de pedidos obtenida exitosamente")
     @ApiResponse(responseCode = "204", description = "No se encontraron pedidos")
     public ResponseEntity<List<PedidoDTO>> obtenerPedidos() {

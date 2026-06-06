@@ -29,7 +29,7 @@ public class DespachoController {
     @GetMapping
     @Operation(summary = "Listar datos de despachos", description = "Devuelve una lista con informacion sobre los despachos.")
     @ApiResponse(responseCode = "200", description = "Lista de despachos obtenida exitosamente")
-    @ApiResponse(responseCode = "204", description = "No se encontraron despachos")
+    @ApiResponse(responseCode = "400", description = "Solicitud inválida")
     public ResponseEntity<List<Despacho>> listar(){
         return ResponseEntity.ok(service.listar());
     }

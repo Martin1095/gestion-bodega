@@ -28,7 +28,7 @@ public class InventarioController {
     private InventarioService service;
 
     @GetMapping
-    @Operation(summary = "Listar inventarios", description = "Obtiene una lista de todos los inventarios registrados en el sistema.")
+    @Operation(summary = "Listar inventario", description = "Obtiene una lista de todos los inventarios registrados en el sistema.")
     @ApiResponse(responseCode = "200", description = "Lista de inventarios obtenida exitosamente")
     @ApiResponse(responseCode = "204", description = "No se encontraron inventarios")
     public ResponseEntity<List<Inventario>> listar(){

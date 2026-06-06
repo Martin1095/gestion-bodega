@@ -39,7 +39,7 @@ public class DetallePedidoController {
 
     // Metodo para obtener todos los detalles de pedido
     @GetMapping
-    @Operation(summary = "Obtener todos los detalles de pedido", description = "Devuelve una lista de todos los detalles de pedido registrados en el sistema.")
+    @Operation(summary = "Obtener todos los detalles de pedidos", description = "Devuelve una lista de todos los detalles de pedido en el sistema.")
     @ApiResponse(responseCode = "200", description = "Lista de detalles de pedido obtenida exitosamente")
     @ApiResponse(responseCode = "204", description = "No se encontraron detalles de pedido")
     public ResponseEntity<List<DetallePedidoDTO>> obtenerDetallesPedido() {

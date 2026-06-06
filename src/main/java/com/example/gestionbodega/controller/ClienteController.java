@@ -32,7 +32,7 @@ public class ClienteController {
 
     // Método para obtener todos los clientes
     @GetMapping
-    @Operation(summary = "Obtener todos los clientes", description = "Devuelve una lista de todos los clientes registrados en el sistema.")
+    @Operation(summary = "Obtener todos los clientes", description = "Devuelve una lista de todos los clientesen el sistema.")
     @ApiResponse(responseCode = "200", description = "Lista de clientes obtenida exitosamente")
     @ApiResponse(responseCode = "204", description = "No se encontraron clientes")
     public ResponseEntity<List<ClienteDTO>> obtenerClientes() {

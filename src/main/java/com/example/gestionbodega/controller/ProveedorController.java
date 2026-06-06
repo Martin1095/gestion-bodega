@@ -26,7 +26,7 @@ public class ProveedorController {
     private ProveedorService proveedorService;
 
     @GetMapping
-    @Operation(summary = "Obtener todos los proveedores", description = "Devuelve una lista de todos los proveedores registrados en el sistema")
+    @Operation(summary = "Obtener todos los proveedores", description = "Devuelve una lista de todos los proveedores en el sistema")
     @ApiResponse(responseCode = "200", description = "Lista de proveedores obtenida exitosamente")
     @ApiResponse(responseCode = "204", description = "No se encontraron proveedores")
     public ResponseEntity<List<ProveedorDTO>> obtenerTodos() {

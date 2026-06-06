@@ -31,7 +31,7 @@ public class ArticuloController {
     private ArticuloService articuloService;
     // GET ALL
     @GetMapping
-    @Operation(summary = "Obtener todos los artículos", description = "Devuelve una lista de todos los artículos registrados en el sistema.")
+    @Operation(summary = "Obtener todos los artículos", description = "Devuelve una lista de todos los artículosen el sistema.")
     @ApiResponse(responseCode = "200", description = "Lista de artículos obtenida exitosamente")
     @ApiResponse(responseCode = "204", description = "No se encontraron artículos")
     public ResponseEntity<List<ArticuloDTO>> obtenerTodos() {

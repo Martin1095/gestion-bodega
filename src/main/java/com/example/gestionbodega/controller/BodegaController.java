@@ -21,7 +21,7 @@ public class BodegaController {
     private BodegaService service;
 
     @GetMapping
-    @Operation(summary = "Listar datos de bodega", description = "Devuelve una lista con informacion sobre la bodega.")
+    @Operation(summary = "Listar datos de bodega", description = "Devuelve una lista con informacion de la bodega.")
     @ApiResponse(responseCode = "200", description = "Lista de bodegas obtenida exitosamente")
     @ApiResponse(responseCode = "204", description = "No se encontraron bodegas")
     public ResponseEntity<List<Bodega>> listar(){

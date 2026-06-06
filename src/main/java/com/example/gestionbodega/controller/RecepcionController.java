@@ -22,7 +22,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
-@Tag(name = "Recepciones", description = "Operaciones para las recepciones en el sistema")
+@Tag(name = "Recepciones", description = "Operaciones para las recepcion en el sistema")
 @RequestMapping("/api/v1/recepciones")
 
 public class RecepcionController {

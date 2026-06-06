@@ -27,7 +27,7 @@ public class TrabajadorController {
     private TrabajadorService trabajadorService;
 
     @GetMapping
-    @Operation(summary = "Obtener todos los trabajadores", description = "Devuelve una lista de todos los trabajadores registrados en el sistema")
+    @Operation(summary = "Obtener todos los trabajadores", description = "Devuelve una lista de todos los trabajadores en el sistema")
     @ApiResponse(responseCode = "200", description = "Lista de trabajadores obtenida exitosamente")
     @ApiResponse(responseCode = "204", description = "No se encontraron trabajadores")
     public ResponseEntity<List<TrabajadorDTO>> obtenerTodos() {
