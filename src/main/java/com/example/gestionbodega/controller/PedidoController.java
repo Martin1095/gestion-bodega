@@ -17,7 +17,12 @@ import com.example.gestionbodega.DTO.PedidoDTO;
 import com.example.gestionbodega.model.Pedido;
 import com.example.gestionbodega.service.PedidoService;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
+
 @RestController
+@Tag(name = "Pedidos", description = "Operaciones para los pedidos en el sistema")
 @RequestMapping("/api/v1/pedidos")
 public class PedidoController {
 
@@ -26,6 +31,9 @@ public class PedidoController {
 
     // Metodo para obtener todos los pedidos
     @GetMapping
+    @Operation(summary = "Obtener todos los pedidos", description = "Devuelve una lista de todos los pedidos registrados en el sistema")
+    @ApiResponse(responseCode = "200", description = "Lista de pedidos obtenida exitosamente")
+    @ApiResponse(responseCode = "204", description = "No se encontraron pedidos")
     public ResponseEntity<List<PedidoDTO>> obtenerPedidos() {
         List<PedidoDTO> pedidos = pedidoService.obtenerPedidos();
         if (pedidos.isEmpty()) {
@@ -36,6 +44,9 @@ public class PedidoController {
 
     // Metodo para obtener un pedido por su ID
     @GetMapping("/{id_pedido}")
+    @Operation(summary = "Obtener pedido por ID", description = "Permite buscar un pedido por su ID.")
+    @ApiResponse(responseCode = "200", description = "Pedido encontrado exitosamente")
+    @ApiResponse(responseCode = "404", description = "Pedido no encontrado")
     public ResponseEntity<PedidoDTO> obtenerPedidoPorId(@PathVariable Integer id_pedido) {
         try {
             PedidoDTO pedido = pedidoService.obtenerPedidoPorId(id_pedido);
@@ -47,6 +58,9 @@ public class PedidoController {
 
     // Metodo para añadir un pedido nuevo
     @PostMapping
+    @Operation(summary = "Agregar pedido", description = "Permite añadir un nuevo pedido al sistema.")
+    @ApiResponse(responseCode = "201", description = "Pedido agregado exitosamente")
+    @ApiResponse(responseCode = "400", description = "Solicitud inválida")
     public ResponseEntity<Pedido> agregarPedido(@RequestBody Pedido pedido) {
         try {
             Pedido nuevoPedido = pedidoService.agregarPedido(pedido);
@@ -58,6 +72,9 @@ public class PedidoController {
 
     // Metodo para actualizar un pedido
     @PostMapping("/{id_pedido}")
+    @Operation(summary = "Actualizar pedido", description = "Permite actualizar un pedido existente en el sistema.")
+    @ApiResponse(responseCode = "200", description = "Pedido actualizado exitosamente")
+    @ApiResponse(responseCode = "404", description = "Pedido no encontrado")
     public ResponseEntity<Pedido> actualizarPedido(@PathVariable Integer id_pedido, @RequestBody Pedido pedido) {
         try {
             Pedido pedidoActualizado = pedidoService.actualizarPedido(id_pedido, pedido);
@@ -70,6 +87,9 @@ public class PedidoController {
 
     // Metodo para eliminar un pedido por su ID
     @DeleteMapping("/eliminar/{id_pedido}")
+    @Operation(summary = "Eliminar pedido", description = "Permite eliminar un pedido existente en el sistema.")
+    @ApiResponse(responseCode = "200", description = "Pedido eliminado exitosamente")
+    @ApiResponse(responseCode = "404", description = "Pedido no encontrado")
     public ResponseEntity<String> eliminarPedido(@PathVariable Integer id_pedido) {
         String mensaje = pedidoService.eliminarPedido(id_pedido);
 

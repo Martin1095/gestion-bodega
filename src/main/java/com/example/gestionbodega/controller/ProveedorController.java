@@ -14,13 +14,21 @@ import com.example.gestionbodega.DTO.ProveedorDTO;
 import com.example.gestionbodega.model.Proveedor;
 import com.example.gestionbodega.service.ProveedorService;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
+
 @RestController
+@Tag(name = "Proveedores", description = "Operaciones para los proveedores en el sistema")
 @RequestMapping("/api/v1/proveedores")
 public class ProveedorController {
     @Autowired
     private ProveedorService proveedorService;
 
     @GetMapping
+    @Operation(summary = "Obtener todos los proveedores", description = "Devuelve una lista de todos los proveedores registrados en el sistema")
+    @ApiResponse(responseCode = "200", description = "Lista de proveedores obtenida exitosamente")
+    @ApiResponse(responseCode = "204", description = "No se encontraron proveedores")
     public ResponseEntity<List<ProveedorDTO>> obtenerTodos() {
         List<ProveedorDTO> lista = proveedorService.obtenerTodos();
         if (lista.isEmpty()) {
@@ -30,6 +38,9 @@ public class ProveedorController {
     }
 
     @PostMapping
+    @Operation(summary = "Guardar proveedor", description = "Permite guardar un nuevo proveedor en el sistema")
+    @ApiResponse(responseCode = "201", description = "Proveedor guardado exitosamente")
+    @ApiResponse(responseCode = "400", description = "Solicitud inválida")
     public ResponseEntity<Proveedor> guardarProveedor(@RequestBody Proveedor proveedor) {
         try {
             Proveedor nuevo = proveedorService.guardarProveedor(proveedor);

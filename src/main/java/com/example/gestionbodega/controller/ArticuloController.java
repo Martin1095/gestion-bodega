@@ -18,7 +18,12 @@ import com.example.gestionbodega.DTO.ArticuloDTO;
 import com.example.gestionbodega.model.Articulo;
 import com.example.gestionbodega.service.ArticuloService;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
+
 @RestController
+@Tag(name = "Articulos", description = "Operaciones para los artículos en la bodega")
 @RequestMapping("/api/v1/articulos")
 public class ArticuloController {
 
@@ -26,6 +31,9 @@ public class ArticuloController {
     private ArticuloService articuloService;
     // GET ALL
     @GetMapping
+    @Operation(summary = "Obtener todos los artículos", description = "Devuelve una lista de todos los artículos registrados en el sistema.")
+    @ApiResponse(responseCode = "200", description = "Lista de artículos obtenida exitosamente")
+    @ApiResponse(responseCode = "204", description = "No se encontraron artículos")
     public ResponseEntity<List<ArticuloDTO>> obtenerTodos() {
         List<ArticuloDTO> lista = articuloService.obtenerTodos();
         if (lista.isEmpty()) {
@@ -35,6 +43,9 @@ public class ArticuloController {
     }
     // GET BY ID
     @GetMapping("/{id}")
+    @Operation(summary = "Buscar artículo por ID", description = "Permite buscar un artículo por su ID.")
+    @ApiResponse(responseCode = "200", description = "Artículo encontrado exitosamente")
+    @ApiResponse(responseCode = "404", description = "Artículo no encontrado")
     public ResponseEntity<ArticuloDTO> buscarPorId(@PathVariable Integer id){
         try {
             ArticuloDTO articulo = articuloService.buscarPorId(id);
@@ -45,6 +56,9 @@ public class ArticuloController {
     }
     // POST
     @PostMapping
+    @Operation(summary = "Guardar artículo", description = "Permite guardar un nuevo artículo en el sistema.")
+    @ApiResponse(responseCode = "201", description = "Artículo guardado exitosamente")
+    @ApiResponse(responseCode = "400", description = "Solicitud inválida")
     public ResponseEntity<Articulo> guardar(@RequestBody Articulo articulo) {
         try {
             Articulo nuevo = articuloService.guardarArticulo(articulo);
@@ -55,6 +69,9 @@ public class ArticuloController {
     }
     // PATCH
     @PatchMapping("/{id}")
+    @Operation(summary = "Actualizar artículo", description = "Permite actualizar la información de un artículo.")
+    @ApiResponse(responseCode = "200", description = "Artículo actualizado exitosamente")
+    @ApiResponse(responseCode = "404", description = "Artículo no encontrado")
     public ResponseEntity<Articulo> actualizar(@PathVariable Integer id, @RequestBody Articulo articulo) {
         try {
             Articulo actualizado = articuloService.actualizarArticulo(id, articulo);
@@ -65,13 +82,16 @@ public class ArticuloController {
     }
     // DELETE
     @DeleteMapping("/{id}")
+    @Operation(summary = "Eliminar artículo", description = "Permite eliminar un artículo del sistema.")
+    @ApiResponse(responseCode = "200", description = "Artículo eliminado exitosamente")
+    @ApiResponse(responseCode = "404", description = "Artículo no encontrado")
     public ResponseEntity<String> eliminar(@PathVariable Integer id) {
         String resultado = articuloService.eliminarArticulo(id);
         if (resultado.contains("correctamente")) {
             return new ResponseEntity<>(resultado, HttpStatus.OK);
         }
         
-        return new ResponseEntity<>(resultado, HttpStatus.NOT_FOUND); 
+        return new ResponseEntity<>(resultado, HttpStatus.NOT_FOUND);
     }
 }
 

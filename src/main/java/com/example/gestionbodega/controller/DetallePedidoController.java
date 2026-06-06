@@ -16,7 +16,12 @@ import com.example.gestionbodega.DTO.DetallePedidoDTO;
 import com.example.gestionbodega.model.DetallePedido;
 import com.example.gestionbodega.service.DetallePedidoService;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
+
 @Controller
+@Tag(name = "Detalles de Pedidos", description = "Operaciones para los detalles de pedido en el sistema")
 @RequestMapping("/api/v1/detalle_pedidos")
 public class DetallePedidoController {
 
@@ -34,6 +39,9 @@ public class DetallePedidoController {
 
     // Metodo para obtener todos los detalles de pedido
     @GetMapping
+    @Operation(summary = "Obtener todos los detalles de pedido", description = "Devuelve una lista de todos los detalles de pedido registrados en el sistema.")
+    @ApiResponse(responseCode = "200", description = "Lista de detalles de pedido obtenida exitosamente")
+    @ApiResponse(responseCode = "204", description = "No se encontraron detalles de pedido")
     public ResponseEntity<List<DetallePedidoDTO>> obtenerDetallesPedido() {
         List<DetallePedidoDTO> detallesPedido = detallePedidoService.obtenerDetallesPedido();
         if (detallesPedido.isEmpty()) {
@@ -44,6 +52,9 @@ public class DetallePedidoController {
 
     // Metodo para obtener un detalle de pedido por su ID
     @GetMapping("/{id_detalle_pedido}")
+    @Operation(summary = "Obtener detalle de pedido por ID", description = "Permite buscar un detalle de pedido por su ID.")
+    @ApiResponse(responseCode = "200", description = "Detalle de pedido encontrado exitosamente")
+    @ApiResponse(responseCode = "404", description = "Detalle de pedido no encontrado")
     public ResponseEntity<DetallePedidoDTO> obtenerDetallePedidoPorId(@PathVariable Integer id_detalle_pedido) {
         try {
             DetallePedidoDTO detallePedido = detallePedidoService.obtenerDetallePedidoPorId(id_detalle_pedido);
@@ -55,6 +66,9 @@ public class DetallePedidoController {
 
     // Metodo para añadir un nuevo detalle de pedido
     @PostMapping
+    @Operation(summary = "Agregar detalle de pedido", description = "Permite añadir un nuevo detalle de pedido al sistema.")
+    @ApiResponse(responseCode = "201", description = "Detalle de pedido agregado exitosamente")
+    @ApiResponse(responseCode = "400", description = "Solicitud inválida")
     public ResponseEntity<DetallePedido> agregarDetallePedido(@RequestBody DetallePedido detallePedido) {
         try {
             DetallePedido nuevoDetallePedido = detallePedidoService.agregarDetallePedido(detallePedido);
@@ -66,6 +80,9 @@ public class DetallePedidoController {
 
     // Metodo para editar un detalle de pedido por su ID
     @PostMapping("/editar/{id_detalle_pedido}")
+    @Operation(summary = "Editar detalle de pedido", description = "Permite editar un detalle de pedido existente en el sistema.")
+    @ApiResponse(responseCode = "200", description = "Detalle de pedido actualizado exitosamente")
+    @ApiResponse(responseCode = "404", description = "Detalle de pedido no encontrado")
     public ResponseEntity<DetallePedido> editarDetallePedido(@PathVariable Integer id_detalle_pedido, @RequestBody DetallePedido detallePedido) {
         try {
             DetallePedido detallePedidoActualizado = detallePedidoService.editarDetallePedido(id_detalle_pedido, detallePedido);
@@ -77,6 +94,9 @@ public class DetallePedidoController {
 
     // Metodo para eliminar un detalle de pedido por su ID
     @PostMapping("/eliminar/{id_detalle_pedido}")
+    @Operation(summary = "Eliminar detalle de pedido", description = "Permite eliminar un detalle de pedido existente en el sistema.")
+    @ApiResponse(responseCode = "200", description = "Detalle de pedido eliminado exitosamente")
+    @ApiResponse(responseCode = "404", description = "Detalle de pedido no encontrado")
     public ResponseEntity<String> eliminarDetallePedido(@PathVariable Integer id_detalle_pedido) {
         String resultadoEliminacion = detallePedidoService.eliminarDetallePedido(id_detalle_pedido);
         if (resultadoEliminacion.contains("exitosamente")) {

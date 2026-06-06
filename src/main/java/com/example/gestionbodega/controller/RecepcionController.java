@@ -17,7 +17,12 @@ import com.example.gestionbodega.DTO.RecepcionDTO;
 import com.example.gestionbodega.model.Recepcion;
 import com.example.gestionbodega.service.RecepcionService;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
+
 @RestController
+@Tag(name = "Recepciones", description = "Operaciones para las recepciones en el sistema")
 @RequestMapping("/api/v1/recepciones")
 
 public class RecepcionController {
@@ -26,6 +31,9 @@ public class RecepcionController {
     private RecepcionService recepcionService;
 
     @GetMapping
+    @Operation(summary = "Obtener todas las recepciones", description = "Devuelve una lista de todas las recepciones registradas en el sistema")
+    @ApiResponse(responseCode = "200", description = "Lista de recepciones obtenida exitosamente")
+    @ApiResponse(responseCode = "204", description = "No se encontraron recepciones")
     public ResponseEntity<List<RecepcionDTO>> obtenerTodos() {
         List<RecepcionDTO> lista = recepcionService.obtenerTodos();
         if (lista.isEmpty()) {
@@ -35,6 +43,9 @@ public class RecepcionController {
     }
 
     @PostMapping
+    @Operation(summary = "Guardar recepcion", description = "Permite guardar una nueva recepcion en el sistema")
+    @ApiResponse(responseCode = "201", description = "Recepcion guardada exitosamente")
+    @ApiResponse(responseCode = "400", description = "Solicitud inválida")
     public ResponseEntity<Recepcion> guardar(@RequestBody Recepcion recepcion) {
         try {
             Recepcion nueva = recepcionService.guardarRecepcion(recepcion);

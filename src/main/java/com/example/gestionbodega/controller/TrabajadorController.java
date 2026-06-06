@@ -15,13 +15,21 @@ import com.example.gestionbodega.DTO.TrabajadorDTO;
 import com.example.gestionbodega.model.Trabajador;
 import com.example.gestionbodega.service.TrabajadorService;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
+
 @RestController
+@Tag(name = "Trabajadores", description = "Operaciones para los trabajadores en el sistema")
 @RequestMapping("/api/v1/trabajadores")
 public class TrabajadorController {
     @Autowired
     private TrabajadorService trabajadorService;
 
     @GetMapping
+    @Operation(summary = "Obtener todos los trabajadores", description = "Devuelve una lista de todos los trabajadores registrados en el sistema")
+    @ApiResponse(responseCode = "200", description = "Lista de trabajadores obtenida exitosamente")
+    @ApiResponse(responseCode = "204", description = "No se encontraron trabajadores")
     public ResponseEntity<List<TrabajadorDTO>> obtenerTodos() {
         List<TrabajadorDTO> lista = trabajadorService.obtenerTodos();
         
@@ -33,6 +41,9 @@ public class TrabajadorController {
     }
 
     @PostMapping
+    @Operation(summary = "Guardar trabajador", description = "Permite guardar un nuevo trabajador en el sistema")
+    @ApiResponse(responseCode = "201", description = "Trabajador guardado exitosamente")
+    @ApiResponse(responseCode = "400", description = "Solicitud inválida")
     public ResponseEntity<Trabajador> guardar(@RequestBody Trabajador trabajador) {
 
         try {
