@@ -1,6 +1,6 @@
 package com.example.gestionbodega.model;
 
-import java.time.LocalDate;
+import java.sql.Date;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -15,9 +15,9 @@ public class Despacho {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Integer id_despacho;
 
-    private LocalDate fecha;
+    private Date fecha;
 
     private String estado;
 

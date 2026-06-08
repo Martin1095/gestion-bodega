@@ -1,6 +1,6 @@
 package com.example.gestionbodega.DTO;
 
-import java.time.LocalDate;
+import java.sql.Date;
 
 import lombok.Data;
 
@@ -8,10 +8,10 @@ import lombok.Data;
 public class DespachoDTO {
 
     // ID del despacho
-    private Integer id;
+    private Integer id_despacho;
 
     // Fecha del despacho
-    private LocalDate fecha;
+    private Date fecha;
 
     // Destino del envío
     private String destino;

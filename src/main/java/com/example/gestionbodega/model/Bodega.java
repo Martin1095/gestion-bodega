@@ -15,7 +15,7 @@ public class Bodega {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Integer id_bodega;
 
     @NotBlank
     private String nombre;

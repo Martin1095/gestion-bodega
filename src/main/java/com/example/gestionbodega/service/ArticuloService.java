@@ -15,7 +15,7 @@ public class ArticuloService {
     // Convertir entidad a DTO
     private ArticuloDTO convertirADTO(Articulo articulo) {
         ArticuloDTO dto = new ArticuloDTO();
-            dto.setId(articulo.getId());
+            dto.setId_articulo(articulo.getId_articulo());
             dto.setNombre(articulo.getNombre());
             dto.setMarca(articulo.getMarca());
             dto.setStock(articulo.getStock());

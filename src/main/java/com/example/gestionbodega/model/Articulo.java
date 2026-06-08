@@ -29,7 +29,7 @@ import lombok.NoArgsConstructor;
 public class Articulo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Integer id_articulo;
 
     // Nombre del artículo
     @NotBlank(message = "El nombre es obligatorio")

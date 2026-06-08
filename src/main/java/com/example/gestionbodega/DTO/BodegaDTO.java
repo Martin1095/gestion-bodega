@@ -6,7 +6,7 @@ import lombok.Data;
 
 public class BodegaDTO {
 
-    private Integer id;
+    private Integer id_bodega;
     private String nombre;
     private String direccion;
 
