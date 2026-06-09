@@ -31,7 +31,7 @@ public class Trabajador {
     //identificador unico del trabajador, se genera automaticamente
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Integer id_trabajador;
 
     //nombre del trabajador, no puede ser nulo ni vacio, debe tener entre 3 y 100 caracteres
     @NotBlank

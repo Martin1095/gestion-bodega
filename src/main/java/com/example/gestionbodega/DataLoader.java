@@ -1,6 +1,5 @@
 package com.example.gestionbodega;
 
-import java.util.Date;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,6 +39,9 @@ public class DataLoader implements CommandLineRunner {
 
     @Autowired
     private RecepcionRepository recepcionRepository;
+
+    @Autowired
+    private PedidoRepository pedidoRepository;
 
     @Autowired
     private TrabajadorRepository trabajadorRepository;
@@ -90,6 +92,64 @@ public class DataLoader implements CommandLineRunner {
             despachoRepository.save(despacho);
         }
         
+        // Generar datos de DetallePedido
+        for (int i = 0; i < 30; i++) {
+            DetallePedido detallePedido = new DetallePedido();
+            detallePedido.setId_detalle_pedido(i + 1);
+            detallePedido.setCantidad(random.nextInt(10) + 1);
+            detallePedido.setPrecio_unitario(Double.parseDouble(faker.commerce().price()));
+            detallePedidoRepository.save(detallePedido);
+        }
+
+        // Generar datos de Inventario
+        for (int i = 0; i < 50; i++) {
+            Inventario inventario = new Inventario();
+            inventario.setId_inventario(i + 1);
+            inventario.setStockActual(random.nextInt(100));
+            inventario.setStockMinimo(random.nextInt(10) + 1);
+            inventario.setUbicacion(faker.address().fullAddress());
+            inventarioRepository.save(inventario);
+        }
+
+        // Generar datos de pedidos
+        for (int i = 0; i < 30; i++) {
+            Pedido pedido = new Pedido();
+            pedido.setId_pedido(i + 1);
+            pedido.setFecha_entrega(null);
+            pedido.setDireccion_entrega(faker.address().fullAddress());
+            pedido.setEstado_pedido(faker.options().option("Pendiente", "Enviado", "Entregado"));
+            pedidoRepository.save(pedido);
+        }
+
+        // Generar datos de Proveedores
+        for (int i = 0; i < 20; i++) {
+            Proveedor proveedor = new Proveedor();
+            proveedor.setId_proveedor(i + 1);
+            proveedor.setNombre(faker.company().name());
+            proveedor.setCorreo(faker.internet().emailAddress());
+            proveedor.setTelefono(faker.number().digits(9));
+            proveedorRepository.save(proveedor);
+        }
+
+        // Generar datos de Recepciones
+        for (int i = 0; i < 20; i++) {
+            Recepcion recepcion = new Recepcion();
+            recepcion.setId_recepcion(i + 1);
+            recepcion.setFecha(null);
+            recepcion.setCantidad(random.nextInt(50) + 1);
+            recepcionRepository.save(recepcion);
+        }
+
+        // Generar datos de Trabajadores
+        for (int i = 0; i < 20; i++) {
+            Trabajador trabajador = new Trabajador();
+            trabajador.setId_trabajador(i + 1);
+            trabajador.setNombre(faker.name().firstName());
+            trabajador.setCargo(faker.job().position());
+            trabajador.setEdad(random.nextInt(40) + 18);
+            trabajadorRepository.save(trabajador);
+        }
+
 
     }
 

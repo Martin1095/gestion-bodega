@@ -27,7 +27,7 @@ public class TrabajadorService {
     //metodo para convertir un Trabajador a TrabajadorDTO
     private TrabajadorDTO convertirADTO(Trabajador trabajador) {
         TrabajadorDTO dto = new TrabajadorDTO();
-        dto.setId(trabajador.getId());
+        dto.setId(trabajador.getId_trabajador());
         dto.setNombre(trabajador.getNombre());
         dto.setCargo(trabajador.getCargo());
         dto.setEdad(trabajador.getEdad());

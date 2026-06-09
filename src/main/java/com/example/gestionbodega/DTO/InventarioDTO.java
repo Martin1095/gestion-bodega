@@ -5,7 +5,7 @@ import lombok.Data;
 @Data
 public class InventarioDTO {
 
-    private Integer id;
+    private Integer id_inventario;
     private Integer stockActual;
     private Integer stockMinimo;
     private String ubicacion;

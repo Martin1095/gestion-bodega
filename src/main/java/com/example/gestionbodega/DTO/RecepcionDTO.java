@@ -1,13 +1,14 @@
 package com.example.gestionbodega.DTO;
 
-import java.time.LocalDate;
+import java.util.Date;
+
 import lombok.Data;
 
 @Data
 public class RecepcionDTO {
 
     private Integer id;
-    private LocalDate fecha;
+    private Date fecha;
     private Integer cantidad;
 
     // Datos proveedor

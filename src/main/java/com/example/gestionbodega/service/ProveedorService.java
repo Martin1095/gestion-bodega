@@ -18,7 +18,7 @@ public class ProveedorService {
     
     private ProveedorDTO convertirADTO(Proveedor proveedor) {
         ProveedorDTO dto = new ProveedorDTO();
-        dto.setId(proveedor.getId());
+        dto.setId_proveedor(proveedor.getId_proveedor());
         dto.setNombre(proveedor.getNombre());
         dto.setCorreo(proveedor.getCorreo());
         dto.setTelefono(proveedor.getTelefono());

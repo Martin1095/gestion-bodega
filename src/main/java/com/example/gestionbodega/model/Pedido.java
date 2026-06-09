@@ -1,5 +1,7 @@
 package com.example.gestionbodega.model;
 
+import java.util.Date;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -28,7 +30,7 @@ public class Pedido {
     @NotBlank(message = "La fecha de entrega es obligatoria")
     @Size(min = 10, max = 10, message = "La fecha de entrega debe tener 10 caracteres")
     @Column(name = "fecha_entrega", nullable = false, length = 10)
-    private String fecha_entrega;
+    private Date fecha_entrega;
 
     @NotBlank(message = "La dirección de entrega es obligatoria")
     @Size(max = 100, message = "La dirección de entrega no puede tener más de 100 caracteres")

@@ -27,9 +27,9 @@ public class RecepcionService {
 
     private RecepcionDTO convertirADTO(Recepcion recepcion) {
         RecepcionDTO dto = new RecepcionDTO();
-        dto.setId(recepcion.getId());
+        dto.setId(recepcion.getId_recepcion());
         dto.setFecha(recepcion.getFecha());
-        dto.setProveedorId(recepcion.getProveedor().getId());
+        dto.setProveedorId(recepcion.getProveedor().getId_proveedor());
         dto.setCantidad(recepcion.getCantidad());
         return dto;
     }

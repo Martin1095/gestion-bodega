@@ -15,7 +15,7 @@ public class Inventario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Integer id_inventario;
 
     @Min(0)
     private Integer stockActual;

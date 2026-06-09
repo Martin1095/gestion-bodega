@@ -29,7 +29,7 @@ public class Proveedor {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Integer id_proveedor;
     //nombre del proveedor
     @NotBlank
     @Column(nullable = false)

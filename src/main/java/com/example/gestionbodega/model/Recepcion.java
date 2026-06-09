@@ -1,5 +1,5 @@
 package com.example.gestionbodega.model;
-import java.time.LocalDate;
+import java.util.Date;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -25,11 +25,11 @@ public class Recepcion {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Integer id_recepcion;
 
     // Fecha de recepción
     @Column(nullable = false)
-    private LocalDate fecha;
+    private Date fecha;
 
 
     // Cantidad recibida
